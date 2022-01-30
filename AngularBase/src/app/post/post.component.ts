@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output ,EventEmitter } from '@angular/core';
 import { PostService } from '../services/post.services';
+import { Post } from './../models/post';
 
 @Component({
   selector: 'app-post',
@@ -28,5 +29,15 @@ export class PostComponent implements OnInit {
   }
   onClicked(){
     this.messageEvent.emit(this.outputChildMessage);
+  }
+
+  AddNewData()
+  {
+    let newPost: Post =
+    {
+        id:"08",
+        name:"Eight"
+    }
+    this.postService.addPost(newPost);
   }
 }

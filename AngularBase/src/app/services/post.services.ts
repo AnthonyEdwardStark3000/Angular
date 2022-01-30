@@ -29,4 +29,10 @@ export class PostService {
     name: "check"
     },
 ]
+
+addPost(data: any)
+{
+  this.post.push(data);
 }
+}
+
