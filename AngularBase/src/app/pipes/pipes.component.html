@@ -1,0 +1,22 @@
+<!-- uppercase -->
+<p style="text-align: center;margin-top: 3rem;">{{title | uppercase}}</p>
+<!-- lowercase -->
+<p style="text-align: center;margin-top: 3rem;">{{title | lowercase}}</p>
+<!-- number -->
+<p style="text-align: center;margin-top: 3rem;">{{count | number}}</p>
+<!-- Decimal -->
+<p style="text-align: center;margin-top: 3rem;">{{decimal | number:'4.2-2'}}</p>
+<!-- currency  -->
+<p style="text-align: center;margin-top: 3rem;">{{price | currency: "INR": true}}</p>
+<!-- Date Pipe  -->
+<p style="text-align: center;margin-top: 3rem;">{{today | date: "short"}}</p>
+<!--JSON Pipe  -->
+<p style="text-align: center;margin-top: 3rem;">{{Sampleobject | json}}</p>
+<!--Percentage Pipe  -->
+<p style="text-align: center;margin-top: 3rem;">{{ 0.567 | percent:'2.1-1'}}</p>
+<!-- slice pipe for slicing array -->
+<p style="text-align: center;margin-top: 3rem;">{{ postArray | slice:0:4}}</p>
+<!-- custom pipe -->
+<p style="text-align: center;margin-top: 3rem;">{{ userDetails.country |append }}</p>
+<!-- Custom pipe append -->
+<p style="text-align: center;margin-top: 3rem;">{{ dummyText |summary: 20}}</p>

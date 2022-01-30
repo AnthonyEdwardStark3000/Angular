@@ -1,0 +1,102 @@
+<app-navbar></app-navbar>
+<!-- {{postmessage}} -->
+<app-post [fromparent]='parentMessage' (messageEvent) ='receiveMessage($event)'></app-post>
+{{ fromChildOutput }}
+<input type="text" (keyup.enter)="Enter(enteredvalue.value)" #enteredvalue>
+<br>
+<br>
+<input type="text" [(ngModel)]="userName">
+<br>
+<button (click)="Print()">Click</button>
+<p style="text-align: center;">Task 1</p>
+
+<input type="text" placeholder="Post Title" style="align-items: center;" [(ngModel)]="posttitle">
+<br>
+<br>
+<textarea placeholder="Post Details" name="Post Details" id="" cols="25" rows="10" [(ngModel)]="postdetails"></textarea>
+<br>
+<br>
+<input type="text" placeholder="Post Image URL" style="align-items: center;" [(ngModel)]="postimageURL">
+<br>
+<br>
+<input type="text" placeholder="Post URL" style="align-items: center;" [(ngModel)]="siteURL">
+<br>
+<input type="checkbox" name="" id="" [(ngModel)]="addBackground" >Add Background
+<h2><span [class.addbackground]="addBackground">{{posttitle}}</span></h2>
+<br>
+<br>
+<h2>{{postdetails}}</h2>
+<br>
+<img [src]="postimageURL">
+<a [href]="siteURL" target="_blank" [style.display]="postimageURL ? 'block': 'none'">More Details</a>
+<ul>
+<li *ngFor="let name of names">{{name}}</li>
+</ul>
+<button (click)="push()">Add item</button>
+<div *ngIf= 'objectArray.length>0 ; then displayElement nodata'>
+</div>
+
+<ng-template #displayElement>
+  <ul>
+    <li *ngFor="let detail of objectArray; let i = index">{{i}}{{detail.name}}
+      <button (click)="Delete(i)">Delete</button>
+    </li>
+    </ul>
+</ng-template>
+<ng-template #nodata>
+  <h2>No content to display</h2>
+</ng-template>
+<h2>ngSwitch</h2>
+<div>
+  <button (click)="Case('case1')">Button 1</button>
+  <button (click)="Case('case2')">Button 2</button>
+  <button (click)="Case('case3')">Button 3</button>
+</div>
+<div [ngSwitch]="switchCase">
+  <div *ngSwitchCase="'case1'">Button 1 clicked</div>
+  <div *ngSwitchCase="'case2'">Button 2 clicked</div>
+  <div *ngSwitchCase="'case3'">Button 3 clicked</div>
+  <div *ngSwitchDefault>Button is not clicked</div>
+</div>
+<h2>ngStyle</h2>
+<div [ngStyle]="{color: isActive ? 'red' : 'green',
+                 textTransform: isActive ? 'uppercase' : 'lowercase',
+                 fontWeight: isActive ? 'bold': 'italic' }">Style binding</div>
+<h2>ngClass</h2>
+<div [ngClass]="{
+  'main':isActive,
+  'text-weight':isActive
+}"></div>
+<h2>Task 2</h2>
+<div style="text-align: center;margin-top: 50px;">
+  <h2>User Details</h2>
+  <input type="text" placeholder="name" [(ngModel)]="name"><br><br>
+  <input type="email" placeholder="email" [(ngModel)]="email"><br><br>
+  <textarea name="" id="" cols="30" rows="10" [(ngModel)]="address">Address</textarea><br><br>
+  <button (click)='save()'>Save Button</button>
+  <br>
+  <div *ngIf="users.length > 0 ; else nodata">
+  <div class="table-area">
+    <table>
+      <thead>
+      <th>#</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Action</th>
+    </thead>
+    <tr *ngFor="let user of users ; let index = index">
+      <td>{{index+1}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.address}}</td>
+      <td><button (click)="deleteUser(index)">Delete</button></td>
+    </tr>
+  </table>
+</div>
+</div>
+<ng-template #nodata>
+  <h2>No data to display</h2>
+</ng-template>
+</div>
+<app-pipes></app-pipes>

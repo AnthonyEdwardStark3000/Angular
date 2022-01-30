@@ -1,0 +1,11 @@
+<p>{{title}}</p>
+<p>{{ fromparent }}</p>
+<app-post-list [receive]='postmessage'></app-post-list>
+<button (click)="onClicked()">click</button>
+<h2>Data transfer using Services files</h2>
+<div>
+  <ul>
+    <li *ngFor="let post of posts">{{post.name}}</li>
+  </ul>
+</div>
+
