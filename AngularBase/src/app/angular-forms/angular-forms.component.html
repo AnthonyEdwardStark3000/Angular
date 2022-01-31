@@ -3,8 +3,20 @@
   <form #f='ngForm' (submit)="onSubmit(f)">
       <div class="form-group">
       <label for="">First Name</label>
-      <input type="text" placeholder="fullname" class="form-control" name="fullName" ngModel #fullName = 'ngModel' (change)="getValue(fullName)" required>
-      <div class="alert alert-danger" *ngIf="fullName.invalid && fullName.touched">Name is required</div>
+      <input type="text"
+      placeholder="fullname"
+      class="form-control is-invalid"
+      name="fullName"
+      ngModel
+      #fullName = 'ngModel'
+      (change)="getValue(fullName)" required
+      [ngClass]="{ 'is-invalid': fullName.touched && fullName.invalid }"
+      minlength="5"
+      maxlength="20"
+      >
+      <div *ngIf="fullName.errors.required">
+        <div class="alert alert-danger" *ngIf="fullName.invalid && fullName.touched">Name is required</div>
+      </div>
       </div>
 
     <div class="form-group">
