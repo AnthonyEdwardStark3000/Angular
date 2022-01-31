@@ -10,6 +10,7 @@ import { PipesComponent } from './pipes/pipes.component';
 import { AppendPipe } from './customPipes/append.pipe';
 import { SummaryPipe } from './customPipes/summarypipe.pipe';
 import { PostService } from './services/post.services';
+import { AngularFormsComponent } from './angular-forms/angular-forms.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { PostService } from './services/post.services';
     PostListComponent,
     PipesComponent,
     AppendPipe,
-    SummaryPipe
+    SummaryPipe,
+    AngularFormsComponent
   ],
   imports: [
 BrowserModule,
