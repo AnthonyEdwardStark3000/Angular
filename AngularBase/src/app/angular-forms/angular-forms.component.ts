@@ -12,7 +12,7 @@ export class AngularFormsComponent implements OnInit {
 
   onSubmit(f: NgForm)
   {
-  console.log(f);
+  console.log(f.value);
   }
 
   getValue(f: NgModel)

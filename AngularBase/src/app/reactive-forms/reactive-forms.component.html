@@ -1,0 +1,44 @@
+<!-- Import formgroup -->
+<h2 style="text-align: center;">Reactive-forms</h2>
+<div class="container mt-5">
+  <div class="form-area">
+    <form [formGroup]= 'form'>
+        <div class="form-group">
+        <label for="">First Name</label>
+        <input type="text"
+        placeholder="fullname"
+        class="form-control"
+        name="fullName",
+        formControlName = 'fullName'
+        >
+
+        </div>
+
+        <!-- Checking for valid email using email pattern -->
+      <div class="form-group">
+        <label for="">Email</label>
+        <input
+        type="email"
+        placeholder="example@gmail.com"
+        name="email"
+        class="form-control"
+        formControlName = 'email'
+        >
+
+      </div>
+
+      <div class="form-group">
+        <label for="">Address</label>
+        <textarea
+         placeholder="Address"
+         cols="40"
+         rows="10"
+         name="address"
+         class="form-control"
+         formControlName = 'address'
+         ></textarea>
+      </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+  </div>
+  </div>

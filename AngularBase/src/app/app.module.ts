@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NavbarComponent } from 'src/navbar/navbar.component';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
@@ -11,6 +11,7 @@ import { AppendPipe } from './customPipes/append.pipe';
 import { SummaryPipe } from './customPipes/summarypipe.pipe';
 import { PostService } from './services/post.services';
 import { AngularFormsComponent } from './angular-forms/angular-forms.component';
+import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 
 
 @NgModule({
@@ -22,12 +23,16 @@ import { AngularFormsComponent } from './angular-forms/angular-forms.component';
     PipesComponent,
     AppendPipe,
     SummaryPipe,
-    AngularFormsComponent
+    AngularFormsComponent,
+    ReactiveFormsComponent
   ],
   imports: [
-BrowserModule,
+    BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    FormGroup,
+    FormControl
   ],
   providers: [PostService],
   bootstrap: [AppComponent]
