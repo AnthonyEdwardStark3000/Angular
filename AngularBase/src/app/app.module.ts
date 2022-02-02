@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NavbarComponent } from 'src/navbar/navbar.component';
-import { FormGroup, FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
@@ -32,7 +32,9 @@ import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.componen
     FormsModule,
     ReactiveFormsModule,
     FormGroup,
-    FormControl
+    FormControl,
+    FormBuilder,
+    Validators
   ],
   providers: [PostService],
   bootstrap: [AppComponent]

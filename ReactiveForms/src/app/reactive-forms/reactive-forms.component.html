@@ -1,0 +1,40 @@
+<div class="container mt-5">
+  <h1 class="text-center">Reactive Form</h1>
+  <div class="form-area">
+    <form>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text"
+        placeholder="FullName"
+        class="form-control"
+        name="fullName"
+        formControlName="fullName"
+        >
+
+      <div class="form-group">
+        <label for="">Email</label>
+        <input
+        type="email"
+        placeholder="example@gmail.com"
+        name="email"
+        class="form-control"
+        formControlName="email"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="">Address</label>
+        <textarea
+         placeholder="Address"
+         cols="40"
+         rows="10"
+         name="address"
+         class="form-control"
+         formControlName="address"
+         ></textarea>
+      </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+  </div>
+</div>
