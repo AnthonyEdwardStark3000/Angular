@@ -1,0 +1,4 @@
+Post card of the main page is written in
+layouts/post-card
+Most of the properties here and the component subscription form have custom classes
+and the css properties are defined in all those components and also with the global style.css file

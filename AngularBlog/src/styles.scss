@@ -7,6 +7,18 @@
   --body-text-color: #596392!important;
   --navbar-footer-color: #F9F9F9!important;
 }
+
+.site-logo
+{
+  padding: 5px 20px;
+  border-radius: 12px;
+  background-color: var(--Secondary-color);
+  color: var(--primary);
+}
+.nav-link
+{
+  color: var(--primary)
+}
 p
 {
   color: var(--primary)
@@ -16,4 +28,9 @@ body{
   font-size: 12px;
   color: var(--body-text-color);
   font-weight: bolder;
+}
+.shadow
+{
+  border: none;
+  box-shadow: 0px 0px 33px -10px rgba(71, 114, 254, 0.3);
 }
