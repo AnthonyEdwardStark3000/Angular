@@ -1,7 +1,16 @@
 <h1>Angular Blog</h1>
 <button routerLink="/home" routerLinkActive="activeClass">Home</button>
-<button routerLink="/post" routerLinkActive="activeClass">Post List</button>
+
+<!-- Normal Routing and passing params  -->
+
+<!-- <button routerLink="/post" routerLinkActive="activeClass">Post List</button> -->
 <!-- <app-post-list></app-post-list> -->
+
+<!-- passing query params  -->
+
+<button routerLink="/post" routerLinkActive="activeClass" [queryParams]="{page:1, orderBy:'newest'}">Post List</button>
 <br>
 <a routerLink="/post">Post list </a>
+<br>
+<button (click)="OnSubmit()"> Submit </button>
 <router-outlet></router-outlet>

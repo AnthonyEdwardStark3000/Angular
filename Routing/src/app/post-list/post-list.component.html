@@ -1,6 +1,9 @@
 <div *ngFor="let post of posts; let index = index">
     <h1>{{post.content}}</h1>
     <!-- sending the parameter on click using the router link so bind it and then send it as an array -->
-    <button [routerLink]="['/singlePost',index]"> View Content </button>
+    <!-- <button [routerLink]="['/singlePost', index, post.title]"> View Content </button> -->
+
+    <!-- Passing query parameter  -->
+    <button [routerLink]="['/singlePost', index , post.title]"> View Content </button>
     <hr>
 </div>

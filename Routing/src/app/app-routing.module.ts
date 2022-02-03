@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FournotfourComponent } from './fournotfour/fournotfour.component';
 import { HomeComponent } from './home/home.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { SinglepostComponent } from './singlepost/singlepost.component';
@@ -12,7 +13,10 @@ const routes: Routes = [
     path:'home', component: HomeComponent
   },
   {
-    path:'singlePost/:id', component: SinglepostComponent
+    path:'singlePost/:id/:title', component: SinglepostComponent
+  },
+  {
+    path:'**', component: FournotfourComponent
   },
 ];
 

@@ -16,6 +16,8 @@ export class SinglepostComponent implements OnInit {
       console.log(value);
       let id = value.get('id');
       console.log(id)
+      let title = value.get('title');
+      console.log(title)
     })
   }
 

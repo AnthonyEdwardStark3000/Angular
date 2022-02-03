@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-post-list',
@@ -35,9 +36,17 @@ export class PostListComponent implements OnInit {
     },
   ]
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
+    this.route.queryParamMap.subscribe(function(value){
+      console.log(value);
+      let page = value.get('page');
+      console.log("The page received with paramMap is :"+page);
+      let order = value.get('orderBy');
+      console.log("Order Received is :"+order);
+    })
   }
 
 }
