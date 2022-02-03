@@ -1,0 +1,64 @@
+Create the basic common components i.e header, category and footer in the
+ layouts folder
+Create other components home, single-category, single-post, terms-and-conditions, contact-us in the folder named pages
+Create another one component for user subscription subscription-form
+Create another components comment-form , comment-list in comments folder
+
+******************** Done with components creation ********************
+ * Defining temporary basic Routing @ app-routing.module.ts
+
+  const routes: Routes = [
+  {
+    path:'', component: HomeComponent
+  },
+  {
+    path:'category', component: HomeComponent
+  },
+  {
+    path:'post', component: SinglePostComponent
+  },
+  {
+    path:'about', component: HomeComponent
+  },
+  {
+    path:'terms-conditions', component: TermsAndConditionsComponent
+  },
+  {
+    path:'contact', component: ContactUsComponent
+  },
+];
+
+
+*********************************** Install Bootstrap ************************************************
+npm i bootstrap@4.6
+
+method 1 :=
+angular.json -> "styles":["node_modules/bootstrap/dist/css/bootstrap.min.css"]
+stop and rerun the app
+
+method 2 :=
+index.html -> <link rel ="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+method 3 :=
+ style.scss -> @import '~bootstrap/dist/css/bootstrap.min.css'
+
+
+
+************************** Creating common css variables *************************************
+
+styles.scss
+
+// variable with root scope
+// --variablename : property!important; !important to override default bootstrap property if exists any
+:root
+{
+  --primary: red!important;
+}
+
+Applying it
+p
+{
+  color: var(--primary)
+}
+
+and designed the global scss file

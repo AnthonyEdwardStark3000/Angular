@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@200&family=Montserrat:wght@200&family=Poppins:wght@500&family=Roboto&family=Ubuntu:wght@400;500&display=swap');
+:root
+{
+  --primary: #026467!important;
+  --Secondary-color: #E5F5EA!important;
+  --body-text-color: #596392!important;
+  --navbar-footer-color: #F9F9F9!important;
+}
+p
+{
+  color: var(--primary)
+}
+body{
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  color: var(--body-text-color);
+  font-weight: bolder;
+}
