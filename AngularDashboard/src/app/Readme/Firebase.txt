@@ -1,0 +1,33 @@
+Firebase :=
+  Realtime database for both mobile and webapps, cloud hosting
+     => firebase.google.com
+    firebase-> gotoconsole -> addproject -> enter name -> continue -> uncheck google analytics -> continue
+    -> continue
+    this will open firebase dashboard
+
+Connecting firestore :=
+  create firebase app from the created project
+  click the webapp icon -> give a name -> Register app
+  copy from api key to appId -> environment.prod.ts
+  @environment.prod.ts -> create an object firebaseConfig:
+  {
+    //paste the key
+  apiKey: "AIzaSyCbYMS13vNKk6v-FlAOtsWfh-jQpmN0QYc",
+  authDomain: "angular-blog-1bfd0.firebaseapp.com",
+  projectId: "angular-blog-1bfd0",
+  storageBucket: "angular-blog-1bfd0.appspot.com",
+  messagingSenderId: "1019644949424",
+  appId: "1:1019644949424:web:6ab6f75a357c2234a19c75"
+}
+  }
+
+ * install firebase -> ng add @angular/fire
+ * import AngularFireModule
+       import { AngularFireModule } from "@angular/fire/compat";
+       imports:[
+             AngularFireModule.initializeApp(environment.firebaseConfig),
+       ]
+      import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+       imports:[
+                AngularFirestoreModule
+              ]

@@ -6,3 +6,11 @@ After completing the design in all the components
 4.Firebase and firestore
 Angular connection with firebase
 
+Components we might need in admin module
+  1.Login component
+  2.Category component - to manage the categories
+  3.Post component - to manage the posts added
+  4.subscription component - to manage the subscribers
+  5.Comments component - to manage the read Comments
+  6.Dashboard component - to show functions of all the above mentioned components
+  7,8.Header and Footer component - to edit the header and footer content

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-blog-1bfd0": {
+      "hosting": {
+        "AngularDashboard": [
+          "angular-blog-1bfd0"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-blog-1bfd0"
+  }
+}
