@@ -1,0 +1,8 @@
+After completing the design in all the components
+ # Dashboard for admin
+1.Generating seperate angular app for Dashboard
+2.Planning componentfa-spin
+3.Design using bootstrap
+4.Firebase and firestore
+Angular connection with firebase
+
