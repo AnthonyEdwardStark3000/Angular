@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@200&family=Montserrat:wght@200&family=Poppins:wght@500&family=Roboto&family=Ubuntu:wght@400;500&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@200&family=Montserrat:wght@200&family=Poppins:wght@500&family=Roboto&family=Ubuntu:wght@400;500&display=swap');
+@import "~ngx-toastr/toastr";
 :root
 {
   --primary: #026467!important;

@@ -1,0 +1,183 @@
+In the serperate file category services.ts the CRUD Logic with firebase is written
+* Create a method
+Receive parameter and the function
+Import and inject the service file in the component where we use it .
+Using the injected variable access the method in the services file and pass the data to it.
+  ===> refer services/categories.services.ts for logic and
+  ===> categories.component.ts
+
+
+******************************** CRUD ************************************
+Read :=
+* import { map } from 'rxjs';
+
+  create a method to perform this read operation
+
+  loadData()
+  {
+    return this.afs.collection('categories').snapshotChanges().pipe(map(actions =>{  // actions is an anonymous arrow function (name can be anything) it is returned so that the data inside it can be accessed outside
+      return actions.map(a =>{  // a is an anonymous arrow function (name can be anything) it is returned so that the data inside it can be accessed from the above line
+        const data = a.payload.doc.data(); // data received from firebase is stored here
+        const id = a.payload.doc.id;
+        return {id, data} // returning the data and id so that it can be accessed at a =>{}
+      })
+    }))
+  }
+
+To make it load after the component is loaded add this method at the ngOninit @categories.component.ts
+
+ngOnInit(): void {
+    this.categoryService.loadData();
+  }
+// calling the function using the injected variable @ categories.component.ts
+            ||
+            ||
+            ||
+          \ || /
+           \  /
+            \/
+ ngOnInit(): void {
+    this.categoryService.loadData().subscribe( val =>{  //subscribing it to access the data inside it. and an arrow function to call it immediately
+      console.log(val)
+    });
+  }
+
+* This is good for console loging but for accessing outside the function or in the view assign it to another global variable
+
+  categoryArray: Array<any>| undefined;
+
+  // constructor(private afs: AngularFirestore) { }
+  constructor(private categoryService :CategoriesService){} //Performing crud using services file
+
+  ngOnInit(): void {
+    this.categoryService.loadData().subscribe( val =>{
+      console.log(val);
+      this.categoryArray = val;
+    });
+  }
+
+*********************************************************************************************************************************************************
+
+* Update :=
+
+    Create an method at view here @categories.component.html and pass the category name on button click
+
+<td> <button class="btn btn-sm btn-warning" (click)="onEdit(category.data.category)"><i class="fas fa-pencil-alt fa-md"></i>
+
+    Create the same method to relevant component ts file . Here @categories.component.ts
+
+ onEdit(category: any)
+  {
+    console.log(category)
+  }
+
+assign it to a variable ,
+
+formCategory: string;
+
+onEdit(category: any)
+  {
+    console.log(category)
+    this.formCategory = category;
+  }
+
+Bind it using two way databinding
+
+ <form class="form-inline text-center" #categoryForm='ngForm' (ngSubmit)="onSubmit(categoryForm)" ngModel><!--For making the form template driven-->
+        :
+        :
+                [(ngModel)]="formCategory"
+                required
+                [ngClass] =" {'is-invalid' : newCategory.touched && newCategory.invalid} "
+                >
+          <div class="alert alert-danger" *ngIf= "newCategory.touched && newCategory.invalid">
+
+for loading the variable name in the input field for editing
+
+## for changing the heading from add data to update data
+
+    Assign a variable with value = "add" and change it to "edit" on the click of the edit button
+
+  ** Update query for updating in the firestore
+
+  create a method @categories.service.ts
+
+  updateData(id: string | undefined, EditData: Partial<unknown>)
+  {
+    this.afs.collection('categories').doc(id).update(EditData).then(docRef =>{
+      this.toaster.success(' Update of Data successful ');
+    });
+  }
+
+Both the update and the add method are calling the same function on click in the forms portion of the @categories.component.html
+To differentiate function use a condition:
+
+  onSubmit(formData: any)
+  {
+    console.log("Hi");
+
+    let categoryData :Category = {
+      category: formData.value.category,
+    }
+
+    if(this.formStatus == "Add")
+    {
+      this.categoryService.saveData(categoryData);
+    formData.reset(); // to clear the text in the form input after submission
+    }
+    else if(this.formStatus == "Edit")
+    {
+      this.categoryService.updateData(this.categoryId, );
+    }
+  }
+
+The category service file needs id and data for updaing the content so pass the data from the @categories.component.html and receive it and store it in the global variable.
+
+  <td> <button class="btn btn-sm btn-warning"
+(click)="onEdit(category.data.category, category.id)"><i class="fas fa-pencil-alt fa-md"></i>
+
+@categories.component.ts
+
+    categoryId: string| undefined;
+
+  onEdit(category: any, id: any)
+  {
+    console.log(category)
+    this.formCategory = category;
+    this.formStatus = "Edit";
+    this.categoryId = id;
+  }
+and now pass the varibales to the services file
+
+    else if(this.formStatus == "Edit")
+    {
+      this.categoryService.updateData(this.categoryId, categoryData);
+    }
+
+ ===> update succes toaster
+
+********************************************** Delete***********************************************************
+create an button @categories.component.html pass the id on click
+
+@categories.services.ts
+
+deleteData(id:string | undefined)
+  {
+    this.afs.collection('categories').doc(id).delete().then(decRef=>{
+      this.toaster.success(' Data Deleted successfully');
+    });
+  }
+
+@categories.component.ts
+create an method on click and pass the id of the data to be deleted from the component to the services file.
+
+onDelete(id: any)
+  {
+    // alert(id);
+    this.categoryService.deleteData(id);
+  }
+
+==> toast deleted successfully.
+
+
+Done with the CRUD 😀

@@ -1,3 +1,6 @@
+Models folder contains -> interfaces
+Services folder contains -> services
+
 Firebase :=
   Realtime database for both mobile and webapps, cloud hosting
      => firebase.google.com
@@ -33,6 +36,8 @@ Connecting firestore :=
                 AngularFirestoreModule
                 ]
 
+  import { environment } from './../environments/environment.prod';
+
 *********************** CRUD OPERATIONS **************************
 
 1.  The data entered in the form @category.component.html is passed and saved in an object categoryData and key category @category.component.ts
@@ -66,4 +71,13 @@ import it in the working component and inject it
     })
   }
 
+  //'categories' will be the db name that will be created if its done without any error .then will execute
+
+
    * It should return some firebase object with id in console
+
+  * Check the FirestoreDatabase -> cloudFirestore in firebase to confirm the data insertion
+
+  * Refactoring the code was a bit consuing , it saves some lines of code but slightly messesup the head
+
+  * The CRUD with Firebase will be done in a seperate service file

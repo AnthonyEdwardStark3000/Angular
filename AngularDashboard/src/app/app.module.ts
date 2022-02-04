@@ -15,6 +15,7 @@ import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { CategoriesComponent } from './categories/categories.component';
+import { ToastrModule } from 'ngx-toastr';
 // import { FormsModule } from '@angular/forms';
 // import { environment } from '../environments/environment';
 // import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService } from '@angular/fire/analytics';
@@ -26,6 +27,7 @@ import { CategoriesComponent } from './categories/categories.component';
 // import { providePerformance,getPerformance } from '@angular/fire/performance';
 // import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 // import { provideStorage,getStorage } from '@angular/fire/storage';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { CategoriesComponent } from './categories/categories.component';
     // provideRemoteConfig(() => getRemoteConfig()),
     // provideStorage(() => getStorage()),
      AngularFirestoreModule,
-
+     ToastrModule.forRoot(),
+     BrowserAnimationsModule
   ],
   providers: [
     // ScreenTrackingService,UserTrackingService
