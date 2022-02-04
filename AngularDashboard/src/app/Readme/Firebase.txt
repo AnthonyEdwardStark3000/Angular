@@ -42,3 +42,28 @@ AngularFirestore services are used to save the data to the firebase
 import it in the working component and inject it
   * import { AngularFirestore } from '@angular/fire/compat/firestore/firestore';
   *   constructor(private afs: AngularFirestore) { }
+  * import FormsModule @app.module.ts
+
+  component.html model
+
+  *     <form class="form-inline text-center" #categoryForm='ngForm' (ngSubmit)="onSubmit(categoryForm)" ngModel><!--For making the form template driven-->
+  component.ts model
+
+  *
+
+   onSubmit(formData: any)
+  {
+    console.log("Hi");
+    let categoryData = {
+      category: formData.value.category,
+    }
+    console.log(categoryData);
+
+    this.afs.collection('categories').add(categoryData).then(function(docRef){
+      console.log(docRef);
+    }).catch(function(err){
+      console.log(err);
+    })
+  }
+
+   * It should return some firebase object with id in console

@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-// import { AngularFireModule } from "@angular/fire/compat";
-// import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { environment } from './../environments/environment.prod';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,7 +8,13 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 // import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { from } from 'rxjs';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { CategoriesComponent } from './categories/categories.component';
 // import { FormsModule } from '@angular/forms';
 // import { environment } from '../environments/environment';
 // import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService } from '@angular/fire/analytics';
@@ -28,13 +32,19 @@ import { from } from 'rxjs';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    DashboardComponent
+    DashboardComponent,
+    CategoriesComponent
   ],
   imports: [
-    // FormsModule,
+    FormsModule,
+    // NgForm,
     BrowserModule,
     AppRoutingModule,
-    // AngularFireModule.initializeApp(environment.firebaseConfig),
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore()),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     // provideFirebaseApp(() => initializeApp(environment.firebase)),
     // provideAnalytics(() => getAnalytics()),
     // provideAuth(() => getAuth()),
@@ -45,7 +55,8 @@ import { from } from 'rxjs';
     // providePerformance(() => getPerformance()),
     // provideRemoteConfig(() => getRemoteConfig()),
     // provideStorage(() => getStorage()),
-    // AngularFirestore
+     AngularFirestoreModule,
+
   ],
   providers: [
     // ScreenTrackingService,UserTrackingService
