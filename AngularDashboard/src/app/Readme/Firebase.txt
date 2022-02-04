@@ -27,7 +27,18 @@ Connecting firestore :=
        imports:[
              AngularFireModule.initializeApp(environment.firebaseConfig),
        ]
+
       import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
        imports:[
                 AngularFirestoreModule
-              ]
+                ]
+
+*********************** CRUD OPERATIONS **************************
+
+1.  The data entered in the form @category.component.html is passed and saved in an object categoryData and key category @category.component.ts
+2.  firebase -> firestoreDatabase -> createDatabase ->start in testmode -> nam5 us central
+
+AngularFirestore services are used to save the data to the firebase
+import it in the working component and inject it
+  * import { AngularFirestore } from '@angular/fire/compat/firestore/firestore';
+  *   constructor(private afs: AngularFirestore) { }

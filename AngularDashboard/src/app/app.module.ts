@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AngularFireModule } from "@angular/fire/compat";
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+// import { AngularFireModule } from "@angular/fire/compat";
+// import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { environment } from './../environments/environment.prod';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,7 +9,9 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+// import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { from } from 'rxjs';
+// import { FormsModule } from '@angular/forms';
 // import { environment } from '../environments/environment';
 // import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService } from '@angular/fire/analytics';
 // import { provideAuth,getAuth } from '@angular/fire/auth';
@@ -29,10 +31,10 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
     DashboardComponent
   ],
   imports: [
-  BrowserModule,
+    // FormsModule,
+    BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
+    // AngularFireModule.initializeApp(environment.firebaseConfig),
     // provideFirebaseApp(() => initializeApp(environment.firebase)),
     // provideAnalytics(() => getAnalytics()),
     // provideAuth(() => getAuth()),
@@ -42,7 +44,8 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
     // provideMessaging(() => getMessaging()),
     // providePerformance(() => getPerformance()),
     // provideRemoteConfig(() => getRemoteConfig()),
-    // provideStorage(() => getStorage())
+    // provideStorage(() => getStorage()),
+    // AngularFirestore
   ],
   providers: [
     // ScreenTrackingService,UserTrackingService
