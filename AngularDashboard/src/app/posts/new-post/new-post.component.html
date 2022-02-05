@@ -5,22 +5,22 @@
       <p class="mb-5"> You can add new post from here ..</p>
     </div>
   </div>
-  <form action="">
+  <form [formGroup]='postForm' action="">
     <div class="row">
       <div class="col-md-7">
         <div class="card-shadow">
           <div class="card-body">
               <div class="form-group">
                   <label>Title</label>
-                  <input type="text" class="form-control" (keyup)="onTitleChanged($event)">
+                  <input type="text" class="form-control" (keyup)="onTitleChanged($event)" formControlName="title">
               </div>
               <div class="form-group">
                   <label>Permalink</label>
-                  <input type="text" class="form-control" [(ngModel)]="permalink" name="permalink" disabled>
+                  <input type="text" class="form-control" [(ngModel)]="permalink" name="permalink"  formControlName="permalink" [disabled]="isDisabled">
               </div>
               <div class="form-group">
-                  <label>Except</label>
-                  <textarea class="form-control" id="" cols="30" rows="10"></textarea>
+                  <label>Excerpt</label>
+                  <textarea class="form-control" id="" cols="30" rows="10"  formControlName="excerpt"></textarea>
                 </div>
           </div>
         </div>
@@ -29,15 +29,16 @@
       <div class="col-md-5">
         <div class="form-group">
           <label for="">Please select a post category</label>
-          <select class="form-control">
+          <select class="form-control"  formControlName="category">
             <option value="" disabled>Please select a Category</option>
+            <option *ngFor="let category of categories">{{category.data.category}}</option>
           </select>
         </div>
 
         <div class="form-group">
           <label for="">Post Image</label>
           <img [src]="imgSrc" class="form-control img-fluid img-preview">
-          <input type="file" class="form-control" accept="image/*" (change)="showPreview($event)">
+          <input type="file" class="form-control" accept="image/*" (change)="showPreview($event)" formControlName="postImg">
         </div>
 
       </div>
@@ -49,7 +50,9 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="">Content</label>
-                <textarea cols="30" rows="10" class="form-control"></textarea>
+                <!-- <textarea cols="30" rows="10" class="form-control"></textarea> -->
+                <!-- Refer post.txt -->
+                <angular-editor placeholder="Add your Content here" formControlName="content"></angular-editor>
               </div>
             </div>
           </div>

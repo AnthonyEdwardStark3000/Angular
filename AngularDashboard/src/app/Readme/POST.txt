@@ -85,3 +85,55 @@ showPreview($event: any)
 {
   height: 250px;
 }
+
+
+  _                        _   _____          _
+ | |                      | | |  __ \        | |
+ | |      ___    __ _   __| | | |  | |  __ _ | |_  __ _
+ | |     / _ \  / _` | / _` | | |  | | / _` || __|/ _` |
+ | |____| (_) || (_| || (_| | | |__| || (_| || |_| (_| |
+ |______|\___/  \__,_| \__,_| |_____/  \__,_| \__|\__,_|
+
+
+Loading categories data in the list box : =
+    For this we have to load , and we have got an function to load the entire document @categories.services.ts onLoad()
+    so we can use it by importing and injecting it @ new-post.component.ts.
+
+  * import { CategoriesService } from 'src/app/services/categories.service';
+  * constructor(private categoryService: CategoriesService) { }
+  * Load data by accessing the load function on initialization @new-post.component.ts
+
+   ngOnInit(): void
+  {
+    this.categoryService.loadData().subscribe( val => {
+      this.categories = val;
+    });
+  }
+
+  * create an global array for storing data for later access
+
+    categories: Array<any>| undefined;
+
+  * make the data visible at view i.e @ new-post.component.html
+
+    <option value="" disabled>Please select a Category</option>
+    <option *ngFor="let category of categories">{{category.data.category}}</option>
+
+
+  _______           _
+ |__   __|         | |
+    | |  ___ __  __| |_    __ _  _ __  ___   __ _
+    | | / _ \\ \/ /| __|  / _` || '__|/ _ \ / _` |
+    | ||  __/ >  < | |_  | (_| || |  |  __/| (_| |
+    |_| \___|/_/\_\ \__|  \__,_||_|   \___| \__,_|
+
+
+ Converting textarea into an wyswig editor i.e for making the contents like video , image and so on.
+ i.e angular editor
+ npm i @kolkov/angular-editor
+
+* Import it @ app.module.ts and HttpClientModule
+
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
+Replace the text area with <angular-editor></angular-editor>

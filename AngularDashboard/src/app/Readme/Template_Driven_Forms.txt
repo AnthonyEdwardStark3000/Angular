@@ -1,0 +1,33 @@
+
+  _____                     _    _               ______
+ |  __ \                   | |  (_)             |  ____|
+ | |__) | ___   __ _   ___ | |_  _ __   __ ___  | |__  ___   _ __  _ __ ___   ___
+ |  _  / / _ \ / _` | / __|| __|| |\ \ / // _ \ |  __|/ _ \ | '__|| '_ ` _ \ / __|
+ | | \ \|  __/| (_| || (__ | |_ | | \ V /|  __/ | |  | (_) || |   | | | | | |\__ \
+ |_|  \_\\___| \__,_| \___| \__||_|  \_/  \___| |_|   \___/ |_|   |_| |_| |_||___/
+
+
+* Import ReactiveFormsModule @app.modules.components.ts
+* inject FormBuilder in the required component here @ new-post.component.ts
+* create a global variable of FormGroup data type
+
+  postForm: FormGroup | undefined;
+
+constructor(private categoryService: CategoriesService, private fb: FormBuilder)
+   {
+      this.postForm = this.fb.group({
+        title:[''],
+        permalink:[''],
+        excerpt:[''],
+        category:[''],
+        postImg:[''],
+        content:['']
+      })
+   }
+
+Assign FormGroup to the view i.e @new-post.component.html
+
+    <form [formGroup]='postForm' action=""> //postForm is the name of the variable of FormGroup Data type
+
+For using Form controls : =
+    
