@@ -1,0 +1,87 @@
+The documents for creating a new post updating and deleting it can be found
+component - >posts /
+        all-post,new-post
+create the view @dashboard.component.html for the post CRUD regarding the posts
+
+ ____   _____   ____  ____   _____   | |  _  ____  | |  _
+|  _ \ | ___ | / ___)|    \ (____ |  | | | ||  _ \ | |_/ )
+| |_| || ____|| |    | | | |/ ___ |  | | | || | | ||  _ (
+|  __/ |_____)|_|    |_|_|_|\_____|   \_)|_||_| |_||_| \_)
+|_|
+
+      The link to view our data in the browser is the permalink / permanentLink
+     * create an method and capture the keyup event. Refer @new-post.component.html
+
+  <input type="text" class="form-control" (keyup)="onTitleChanged($event)">
+
+     * Apply the method and capture the event @new-post.component.ts
+
+ onTitleChanged($event: any)
+  {
+    // console.log($event.target.value);
+    const title = $event.target.value;
+    //let permalink = title.replace(" ", "-"); //replacing the space with - (i.e)example text -> example-text
+        let permalink = title.replace(/\s/g, "-"); // /\s/g - indigates space
+    console.log(permalink);
+  }
+The mentioned method will replace space with -
+
+@new-post.component.html to make this one visible at the next input box
+   <input type="text" class="form-control" [(ngModel)]="permalink" name="permalink" disabled>
+inorder to use [(ngModel)] we are declaring the name="" attribute
+  _                                                           _
+ (_)                                                         (_)
+  _  _ __ ___    __ _   __ _   ___   _ __   _ __  ___ __   __ _   ___ __      __
+ | || '_ ` _ \  / _` | / _` | / _ \ | '_ \ | '__|/ _ \\ \ / /| | / _ \\ \ /\ / /
+ | || | | | | || (_| || (_| ||  __/ | |_) || |  |  __/ \ V / | ||  __/ \ V  V /
+ |_||_| |_| |_| \__,_| \__, | \___| | .__/ |_|   \___|  \_/  |_| \___|  \_/\_/
+                        __/ |       | |
+                       |___/        |_|
+
+@new-post.component.html
+
+<div class="form-group">
+          <label for="">Post Image</label>
+          <img [src]="imgSrc" class="form-control img-fluid img-preview">
+          <input type="file" class="form-control" accept="image/*" (change)="showPreview($event)">
+</div>
+  ====> accept="image/*" to accept all types of images
+  and (change) is used to load a function to preview the image on any change
+
+@new-post.component.ts
+  create an string and assign deault path
+  imgSrc : any ='./assets/place_holder.jpg';
+
+Define the function to show the preview
+
+  showPreview($event: any)
+  {
+    const Reader = new FileReader();
+    Reader.onload = (e) => //arrow function named as e by us
+    {
+      this.imgSrc = e.target?.result;
+    }
+    Reader.readAsDataURL($event.target.files[0]);
+  }
+
+assign it to an global variable
+  selectedImage : string | undefined;
+
+showPreview($event: any)
+  {
+    const Reader = new FileReader();
+    Reader.onload = (e) =>
+    {
+      this.imgSrc = e.target?.result;
+    }
+    Reader.readAsDataURL($event.target.files[0]);
+    this.selectedImage = $event.target.files[0];
+  }
+
+
+
+@new-post.component.css
+.img-fluid
+{
+  height: 250px;
+}
