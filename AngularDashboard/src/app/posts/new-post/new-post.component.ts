@@ -14,7 +14,7 @@ export class NewPostComponent implements OnInit {
   selectedImage : string | undefined;
   categories: Array<any>| undefined;
   postForm: FormGroup;
-  isDisabled = true;
+
 
   constructor(private categoryService: CategoriesService, private fb: FormBuilder)
    {
