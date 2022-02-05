@@ -30,4 +30,51 @@ Assign FormGroup to the view i.e @new-post.component.html
     <form [formGroup]='postForm' action=""> //postForm is the name of the variable of FormGroup Data type
 
 For using Form controls : =
-    
+    Add formControlName to all the inputs and it should be same as the key of the f.group({})
+
+<input type="text" class="form-control" (keyup)="onTitleChanged($event)" formControlName="title">
+<input type="text" class="form-control" [(ngModel)]="permalink" name="permalink"  formControlName="permalink" [attr.disabled]="true">
+<textarea class="form-control" id="" cols="30" rows="10"  formControlName="excerpt"></textarea>
+<input type="file" class="form-control" accept="image/*" (change)="showPreview($event)" formControlName="postImg">
+
+
+  ______                       __      __     _  _      _         _    _
+ |  ____|                      \ \    / /    | |(_)    | |       | |  (_)
+ | |__  ___   _ __  _ __ ___    \ \  / /__ _ | | _   __| |  __ _ | |_  _   ___   _ __
+ |  __|/ _ \ | '__|| '_ ` _ \    \ \/ // _` || || | / _` | / _` || __|| | / _ \ | '_ \
+ | |  | (_) || |   | | | | | |    \  /| (_| || || || (_| || (_| || |_ | || (_) || | | |
+ |_|   \___/ |_|   |_| |_| |_|     \/  \__,_||_||_| \__,_| \__,_| \__||_| \___/ |_| |_|
+
+Add validators @ new-post.component.ts
+
+constructor(private categoryService: CategoriesService, private fb: FormBuilder)
+   {
+      this.postForm = this.fb.group({
+        title:['',[Validators.required,Validators.minLength(10)]],
+        permalink:['',Validators.required],
+        excerpt:['',[Validators.required,Validators.minLength(50)]],
+        category:['',Validators.required],
+        postImg:['',Validators.required],
+        content:['',Validators.required]
+      })
+   }
+
+then create an getter
+  get fc()
+  {
+    return this.postForm.controls;
+  }
+
+add the error message in the view
+
+ <input type="text" class="form-control" (keyup)="onTitleChanged($event)" formControlName="title" [ngClass]="{'is-invalid': fc['title'].touched && fc['title'].invalid}">
+      <div *ngIf="fc['title'].errors?.['required']">
+        <div class="alert alert-danger" *ngIf="fc['title'].touched && fc['title'].invalid"> Title is Required</div>
+      </div>
+      <div *ngIf="fc['title'].errors?.['minLength']">
+        <div class="alert alert-danger" *ngIf="fc['title'].touched && fc['title'].invalid"> Title must be minimum 10 characters long</div>
+      </div>
+Repeat the above process for all the inputs
+ and add the [ngClass]="{'is-invalid': fc['content'].touched && fc['content'].invalid}" at the end of all the input tags
+Add ngSubmit and assign it to a method in the view @ all-post.component.html
+  <form [formGroup]='postForm' (ngSubmit)="onSubmit()">
