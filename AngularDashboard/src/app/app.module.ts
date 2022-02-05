@@ -1,3 +1,4 @@
+import {AngularFireStorageModule} from '@angular/fire/compat/storage/';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from './../environments/environment.prod';
@@ -64,6 +65,7 @@ import { HttpClientModule } from '@angular/common/http';
     // provideRemoteConfig(() => getRemoteConfig()),
     // provideStorage(() => getStorage()),
      AngularFirestoreModule,
+     AngularFireStorageModule,
      ToastrModule.forRoot(),
      BrowserAnimationsModule,
      AngularEditorModule,
