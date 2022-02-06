@@ -16,22 +16,31 @@ export class NewPostComponent implements OnInit {
   imgSrc: any = './assets/place_holder.jpg';
   selectedImage : string | undefined;
   categories: Array<any>| undefined;
-  postForm: FormGroup;
-
+  post: any;
+  postForm!: FormGroup;
+  formStatus: string ="Add New";
+  docId: any;
 
   constructor(private categoryService: CategoriesService, private fb: FormBuilder,private postService: PostsService, private route: ActivatedRoute)
    {
      this.route.queryParams.subscribe(val =>{
+       this.docId = val['id'];
       console.log(val);
-     })
-      this.postForm = this.fb.group({
-        title:['',[Validators.required,Validators.minLength(10)]],
-        permalink:['',Validators.required],
-        excerpt:['',[Validators.required,Validators.minLength(50)]],
-        category:['',Validators.required],
-        postImg:['',Validators.required],
-        content:['',Validators.required]
+      this.postService.loadOneData(val['id']).subscribe(post=>{
+        this.post = post;
+        this.postForm = this.fb.group({
+          title:[this.post.title,[Validators.required,Validators.minLength(10)]],
+          permalink:[this.post.permalink,Validators.required],
+          excerpt:[this.post.excerpt,[Validators.required,Validators.minLength(50)]],
+          category:[`${this.post.category.categoryId}-${this.post.category.category}`,Validators.required],
+          postImg:['',Validators.required],
+          content:[this.post.content,Validators.required]
+        })
+        this.imgSrc = this.post.postImgPath;
+        this.formStatus = "Edit";
       })
+     })
+
    }
 
   ngOnInit(): void
@@ -85,7 +94,7 @@ export class NewPostComponent implements OnInit {
           createdAt: new Date()
         }
           console.log(postData);
-      this.postService.uploadImage(this.selectedImage, postData);
+      this.postService.uploadImage(this.selectedImage, postData, this.formStatus, this.docId);
       this.postForm.reset();
       this.imgSrc = './assets/place_holder.jpg';
           }

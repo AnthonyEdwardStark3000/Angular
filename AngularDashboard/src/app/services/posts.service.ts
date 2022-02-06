@@ -13,7 +13,7 @@ export class PostsService {
   constructor(private storage: AngularFireStorage,private afs: AngularFirestore , private toaster: ToastrService, private router: Router) { }
 
   // To upload the image
-  uploadImage(selectedImage: any, postData: any)
+  uploadImage(selectedImage: any, postData: any, formStatus: any, id: any)
   {
     const filePath = `postIMG/${Date.now()}`;
     console.log(filePath);
@@ -23,7 +23,15 @@ export class PostsService {
         console.log(URL);
         postData.postImgPath = URL;
         console.log(postData);
-        this.saveData(postData);
+        if (formStatus == 'Edit')
+        {
+          this.updateData(id, postData);
+          this.router.navigate(['/post'])
+        }
+        else
+        {
+          this.saveData(postData);
+        }
       });
     });
   }
@@ -51,6 +59,15 @@ export class PostsService {
   loadOneData(id: any)
   {
    return this.afs.collection('posts').doc(id).valueChanges();
+  }
+
+  //Update Data
+  updateData(id:any, postData: any)
+  {
+    this.afs.collection('posts').doc(id).update(postData).then(()=>{
+        this.toaster.success("Data updated Successfully");
+        this.router.navigate(['/posts']);
+    });
   }
 
 }
