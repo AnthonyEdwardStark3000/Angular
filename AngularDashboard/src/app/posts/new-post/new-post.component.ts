@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { PostsService } from 'src/app/services/posts.service';
 import { Post } from './../../models/post';
@@ -18,8 +19,11 @@ export class NewPostComponent implements OnInit {
   postForm: FormGroup;
 
 
-  constructor(private categoryService: CategoriesService, private fb: FormBuilder,private postService: PostsService)
+  constructor(private categoryService: CategoriesService, private fb: FormBuilder,private postService: PostsService, private route: ActivatedRoute)
    {
+     this.route.queryParams.subscribe(val =>{
+      console.log(val);
+     })
       this.postForm = this.fb.group({
         title:['',[Validators.required,Validators.minLength(10)]],
         permalink:['',Validators.required],

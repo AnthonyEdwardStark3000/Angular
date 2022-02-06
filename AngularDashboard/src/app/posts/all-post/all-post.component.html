@@ -20,7 +20,7 @@
             <thead>
                 <tr>
                   <th> No</th>
-                  <th>  Post Image </th>
+                  <th> Post Image </th>
                   <th> Title </th>
                   <th> Excrept </th>
                   <th> Category </th>
@@ -36,7 +36,20 @@
                 <td [width]="100">{{post.data.excerpt}}</td>
                 <td>{{post.data.category.category}}</td>
                 <td>{{post.data.createdAt.toMillis() | date}}</td>
-                <td></td>
+                <td> <button class="btn btn-sm btn-warning"
+                  routerLink="/post/new"
+                  [queryParams]="{id: post.id}"
+                  >
+                  <i class="fas fa-pencil-alt fa-md"></i>
+                 Edit
+               </button>
+              </td>
+              <!-- <td>
+                <button class="btn btn-sm btn-danger ml-2"
+                >
+                 <i class="fa fa-trash" aria-hidden="true"></i>
+                Delete</button>
+               </td> -->
               </tr>
             </tbody>
           </table>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs';
 
@@ -9,8 +10,9 @@ import { map } from 'rxjs';
 })
 export class PostsService {
 
-  constructor(private storage: AngularFireStorage,private afs: AngularFirestore , private toaster: ToastrService) { }
+  constructor(private storage: AngularFireStorage,private afs: AngularFirestore , private toaster: ToastrService, private router: Router) { }
 
+  // To upload the image
   uploadImage(selectedImage: any, postData: any)
   {
     const filePath = `postIMG/${Date.now()}`;
@@ -25,13 +27,16 @@ export class PostsService {
       });
     });
   }
+  // To save the data
   saveData(postData: any)
   {
     this.afs.collection('posts').add(postData).then(docRef=>{
       this.toaster.success("Data inserted Successfully..");
+      this.router.navigate(["/post"]);
   })
   }
 
+  // To load all the loaded data
   loadData()
   {
     return this.afs.collection('posts').snapshotChanges().pipe(map(actions =>{
@@ -41,6 +46,11 @@ export class PostsService {
         return {id, data}
       })
     }))
+  }
+// To Load only one edited data
+  loadOneData(id: any)
+  {
+   return this.afs.collection('posts').doc(id).valueChanges();
   }
 
 }
