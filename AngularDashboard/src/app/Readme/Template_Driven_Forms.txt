@@ -218,3 +218,85 @@ uploadImage(selectedImage: any)
       console.log("Image uploaded Successfully");
     });
   }
+
+update the imagePath
+@new-post.component.ts
+onSubmit()
+  {
+   :
+   :
+   :
+      this.postService.uploadImage(this.selectedImage, postData); //read the second input
+      }
+  }
+
+@posts.services.ts
+uploadImage(selectedImage: any, postData: any)
+  {
+    :
+    :
+      this.storage.ref(filePath).getDownloadURL().subscribe(URL =>{
+        console.log(URL);
+        postData.postImgPath = URL;
+        console.log(postData);
+      });
+    });
+  }
+
+  for reading the uploaded image's URL for saving
+
+Insert by importing angular firestore
+@post.service.ts
+constructor(private storage: AngularFireStorage,private afs: AngularFirestore , private toaster: ToastrService) { }
+
+  uploadImage(selectedImage: any, postData: any)
+  {
+    :
+    :
+        this.afs.collection('posts').add(postData).then(docRef=>{
+            this.toaster.success("Data inserted Successfully..");
+        })
+      });
+    });
+  }
+
+Reset the form after inserting it .
+@ new-post.component.ts
+onSubmit()
+  {
+      :
+      :
+      this.postService.uploadImage(this.selectedImage, postData);
+      this.postForm.reset();
+      this.imgSrc = './assets/place_holder.jpg';
+          }
+
+
+  _                        _   _    _                                _
+ | |                      | | | |  | |                              | |
+ | |      ___    __ _   __| | | |_ | |__    ___   _ __    ___   ___ | |_
+ | |     / _ \  / _` | / _` | | __|| '_ \  / _ \ | '_ \  / _ \ / __|| __|
+ | |____| (_) || (_| || (_| | | |_ | | | ||  __/ | |_) || (_) |\__ \| |_
+ |______|\___/  \__,_| \__,_|  \__||_| |_| \___| | .__/  \___/ |___/ \__|
+                                                 | |
+                                                 |_|
+ @ posts.services.ts
+
+ loadData()
+  {
+    return this.afs.collection('posts').snapshotChanges().pipe(map(actions =>{
+      return actions.map(a =>{
+        const data = a.payload.doc.data();
+        const id = a.payload.doc.id;
+        return {id, data}
+      })
+    }))
+  }
+and load it in the @all-post.component.ts
+  constructor(private postService: PostsService ) { }
+
+ngOnInit(): void {
+    this.postService.loadData().subscribe(val =>{
+      console.log(val);
+    });
+  }
