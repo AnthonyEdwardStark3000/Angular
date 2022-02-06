@@ -25,20 +25,34 @@ export class NewPostComponent implements OnInit {
    {
      this.route.queryParams.subscribe(val =>{
        this.docId = val['id'];
-      console.log(val);
-      this.postService.loadOneData(val['id']).subscribe(post=>{
-        this.post = post;
-        this.postForm = this.fb.group({
-          title:[this.post.title,[Validators.required,Validators.minLength(10)]],
-          permalink:[this.post.permalink,Validators.required],
-          excerpt:[this.post.excerpt,[Validators.required,Validators.minLength(50)]],
-          category:[`${this.post.category.categoryId}-${this.post.category.category}`,Validators.required],
-          postImg:['',Validators.required],
-          content:[this.post.content,Validators.required]
+       if(this.docId)
+       {
+        this.postService.loadOneData(val['id']).subscribe(post=>{
+          this.post = post;
+          this.postForm = this.fb.group({
+            title:[this.post.title,[Validators.required,Validators.minLength(10)]],
+            permalink:[this.post.permalink,Validators.required],
+            excerpt:[this.post.excerpt,[Validators.required,Validators.minLength(50)]],
+            category:[`${this.post.category.categoryId}-${this.post.category.category}`,Validators.required],
+            postImg:['',Validators.required],
+            content:[this.post.content,Validators.required]
+          })
+          this.imgSrc = this.post.postImgPath;
+          this.formStatus = "Edit";
         })
-        this.imgSrc = this.post.postImgPath;
-        this.formStatus = "Edit";
-      })
+       }
+       else
+       {
+        this.postForm = this.fb.group({
+          title:['',[Validators.required,Validators.minLength(10)]],
+          permalink:['',Validators.required],
+          excerpt:['',[Validators.required,Validators.minLength(50)]],
+          category:['',Validators.required],
+          postImg:['',Validators.required],
+          content:['',Validators.required]
+        })
+       }
+      // console.log(val);
      })
 
    }

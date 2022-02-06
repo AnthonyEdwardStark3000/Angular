@@ -70,4 +70,19 @@ export class PostsService {
     });
   }
 
+  //Delete completely including the image
+
+  deleteImage(postImgPath: any, id: any)
+  {
+    this.storage.storage.refFromURL(postImgPath).delete().then(()=>{
+    this.deleteData(id);
+    })
+  }
+
+  deleteData(id: any)
+  {
+    this.afs.collection('posts').doc(id).delete().then(()=>{
+      this.toaster.warning("Data has been Deleted..");
+    })
+  }
 }

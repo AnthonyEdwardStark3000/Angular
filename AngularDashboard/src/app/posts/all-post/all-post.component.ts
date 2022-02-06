@@ -16,5 +16,8 @@ export class AllPostComponent implements OnInit {
       this.postArray = val;
     });
   }
-
+  onDelete(postImgpath: any, id: any)
+  {
+    this.postService.deleteImage(postImgpath, id);
+  }
 }

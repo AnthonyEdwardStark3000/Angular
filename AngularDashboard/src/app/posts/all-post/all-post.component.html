@@ -31,11 +31,11 @@
             <tbody>
               <tr *ngFor="let post of postArray; let index = index">
                 <td [width]="10">{{index + 1}}</td>
-                <td [width]="150"><img src="{{post.data.postImgPath}}" class="img img-fluid" alt=""></td>
-                <td>{{post.data.title}}</td>
-                <td [width]="100">{{post.data.excerpt}}</td>
-                <td>{{post.data.category.category}}</td>
-                <td>{{post.data.createdAt.toMillis() | date}}</td>
+                <td [width]="120"><img src="{{post.data.postImgPath}}" class="img img-fluid" alt=""></td>
+                <td [width]="130">{{post.data.title}}</td>
+                <td [width]="250">{{post.data.excerpt}}</td>
+                <td [width]="150">{{post.data.category.category}}</td>
+                <td [width]="100">{{post.data.createdAt.toMillis() | date}}</td>
                 <td> <button class="btn btn-sm btn-warning"
                   routerLink="/post/new"
                   [queryParams]="{id: post.id}"
@@ -44,12 +44,12 @@
                  Edit
                </button>
               </td>
-              <!-- <td>
-                <button class="btn btn-sm btn-danger ml-2"
+              <td>
+                <button class="btn btn-sm btn-danger" (click)="onDelete(post.data.postImgPath, post.id)"
                 >
                  <i class="fa fa-trash" aria-hidden="true"></i>
                 Delete</button>
-               </td> -->
+               </td>
               </tr>
             </tbody>
           </table>
