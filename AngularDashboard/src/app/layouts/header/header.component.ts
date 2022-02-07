@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
     console.log("Logged in user..");
     this.username = JSON.parse(localStorage.getItem('user') || '{}').email;
     this.isLoggedIn$ = this.authservice.isLoggedIn();
+    console.log(this.isLoggedIn$);
   }
   onLogout()
   {

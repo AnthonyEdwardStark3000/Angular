@@ -102,3 +102,93 @@ create new service file
   }
 
 //Remove Email and logout buttons
+@ header.component.html
+  <div class="container justify-content-center" *ngIf="isLoggedIn$ | async">
+@ header.component.ts
+  isLoggedIn$: Observable<boolean> | undefined;
+@ auth.services.ts
+
+  loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  isLoggedInGuard: boolean =  false;
+
+  login(email: any, password: any)
+  {
+     :
+     :
+        this.loggedIn.next(true);
+        this.isLoggedInGuard = true;
+        this.route.navigate(['/']);
+      }).catch(e=>{
+        this.toaster.warning(e);
+      })
+  }
+
+ logout() // remove the stored data from the local storage
+  {
+   :
+   :
+      localStorage.removeItem('user');
+      this.loggedIn.next(false);
+      this.route.navigate(['/login']);
+    })
+  }
+
+  isLoggedIn() {
+    return this.loggedIn.asObservable();
+  }
+
+//Router Guard
+
+To prevent the manual routing like localhost:4200 to open the dashboard
+
+ng g guard services/auth  (select canactivate)
+@ auth.services.ts
+
+  loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  isLoggedInGuard: boolean =  false;
+
+  login(email: any, password: any)
+  {
+     :
+     :
+     :
+        this.isLoggedInGuard = true;
+        this.route.navigate(['/']);
+      }).catch(e=>{
+        this.toaster.warning(e);
+      })
+  }
+
+ logout() // remove the stored data from the local storage
+  {
+   :
+   :
+      localStorage.removeItem('user');
+      this.loggedIn.next(false);
+      this.route.navigate(['/login']);
+    })
+  }
+
+logic : = we need to return true from the auth .guard file if the user is logged in else false
+
+constructor(private authService: AuthService){}
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    // return true;
+    if(this.authService.isLoggedInGuard){
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
+@ app-routing.module.ts
+add  ,canActivate: [AuthGuard] to all the routes
+  const routes: Routes = [
+  {
+    path:'', component: DashboardComponent ,canActivate: [AuthGuard]
+  },
