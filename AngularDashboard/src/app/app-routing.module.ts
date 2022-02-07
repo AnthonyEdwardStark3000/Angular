@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './auth/login/login.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AllPostComponent } from './posts/all-post/all-post.component';
@@ -8,6 +9,9 @@ import { NewPostComponent } from './posts/new-post/new-post.component';
 const routes: Routes = [
   {
     path:'', component: DashboardComponent
+  },
+  {
+    path:'login', component: LoginComponent
   },
   {
     path:'category', component: CategoriesComponent

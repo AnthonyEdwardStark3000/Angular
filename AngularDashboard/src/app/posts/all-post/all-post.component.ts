@@ -20,4 +20,11 @@ export class AllPostComponent implements OnInit {
   {
     this.postService.deleteImage(postImgpath, id);
   }
+  onFeatured(id: any, value: boolean)
+  {
+      const FeaturedData = {
+        isFeatured: value
+      }
+     this.postService.markFeatured(id, FeaturedData);
+  }
 }

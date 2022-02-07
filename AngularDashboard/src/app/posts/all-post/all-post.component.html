@@ -22,7 +22,7 @@
                   <th> No</th>
                   <th> Post Image </th>
                   <th> Title </th>
-                  <th> Excrept </th>
+                  <!-- <th> Excrept </th> -->
                   <th> Category </th>
                   <th> Date </th>
                   <th> Actions </th>
@@ -33,7 +33,7 @@
                 <td [width]="10">{{index + 1}}</td>
                 <td [width]="120"><img src="{{post.data.postImgPath}}" class="img img-fluid" alt=""></td>
                 <td [width]="130">{{post.data.title}}</td>
-                <td [width]="250">{{post.data.excerpt}}</td>
+                <!-- <td [width]="250">{{post.data.excerpt}}</td> -->
                 <td [width]="150">{{post.data.category.category}}</td>
                 <td [width]="100">{{post.data.createdAt.toMillis() | date}}</td>
                 <td> <button class="btn btn-sm btn-warning"
@@ -49,6 +49,10 @@
                 >
                  <i class="fa fa-trash" aria-hidden="true"></i>
                 Delete</button>
+              <button *ngIf="!post.data.isFeatured" class="btn btn-sm btn-success ml-3" (click)="onFeatured(post.id, true)">
+                Make Featured</button>
+              <button *ngIf="post.data.isFeatured" class="btn btn-sm btn-warning ml-3" (click)="onFeatured(post.id, false)">
+                Remove Featured</button>
                </td>
               </tr>
             </tbody>

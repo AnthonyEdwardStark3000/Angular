@@ -1,0 +1,104 @@
+Create a auth/login component
+In the login.component.html make the form template driven by introductin ngForm and ngModel
+Pass the value on SUbmit
+
+@login.component.html
+          <form #loginForm= ngForm (ngSubmit)="onSubmit(loginForm.value)">
+FIREBASE
+ ---> Authentication->Get started ->Email and password -> Enable email and password -> save
+  users -> Add user
+
+Angular Fire Auth
+  import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+
+create new service file
+ inject AngularFireAuth @auth.services.ts and create an method to login
+
+  constructor(private afauth: AngularFireAuth, private toaster: ToastrService) { }
+  login(email: any, password: any)
+  {
+      this.afauth.signInWithEmailAndPassword(email, password).then(logRef=>{
+        this.toaster.success("Logged in successfully");
+      })
+  }
+
+@login.component.ts
+
+  constructor(private authService: AuthService) { }
+
+  onSubmit(formValue : any)
+  {
+      console.log(formValue);
+      this.authService.login(formValue.email, formValue.password);
+  }
+
+@login.services.ts // for displaying errors
+ login(email: any, password: any)
+  {
+      this.afauth.signInWithEmailAndPassword(email, password).then(logRef=>{
+        this.toaster.success("Logged in successfully");
+        this.route.navigate(['/']);
+      }).catch(e=>{
+        this.toaster.warning(e);
+      })
+  }
+
+  For display the logged in user
+  login(email: any, password: any)
+  {
+      this.afauth.signInWithEmailAndPassword(email, password).then(logRef=>{
+        this.toaster.success("Logged in successfully");
+        this.loadUser();
+        this.route.navigate(['/']);
+      }).catch(e=>{
+        this.toaster.warning(e);
+      })
+  }
+
+  loadUser()
+  {
+    this.afauth.authState.subscribe(user =>{
+      console.log("User Details");
+      console.log(JSON.parse(JSON.stringify(user)));
+    })
+  }
+
+//  For accessing the value of the logged in user. store the value to the local storage and retrive it from there
+
+@auth.service.ts
+  loadUser()
+  {
+    this.afauth.authState.subscribe(user =>{
+      console.log("User Details");
+      console.log(user);
+      console.log(JSON.parse(JSON.stringify(user)));
+      localStorage.setItem('user',JSON.stringify(user));
+    })
+  }
+
+@header.component.ts
+
+  ngOnInit(): void {
+    console.log("Logged in user..");
+    console.log(JSON.parse(localStorage.getItem('user') || '{}').email);
+  }
+
+//logout function
+@ auth.service.ts
+    logout()
+  {
+    this.afauth.signOut().then(()=>{
+      this.toaster.success("User Logged out Successfully");
+      this.route.navigate(['/login']);
+    })
+  }
+@ header.component.ts
+
+  constructor(private authservice: AuthService) {
+
+   onLogout()
+  {
+    this.authservice.logout();
+  }
+
+//Remove Email and logout buttons

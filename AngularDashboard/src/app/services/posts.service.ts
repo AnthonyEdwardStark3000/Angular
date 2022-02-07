@@ -85,4 +85,10 @@ export class PostsService {
       this.toaster.warning("Data has been Deleted..");
     })
   }
+  markFeatured(id: any, featuredData: any)
+  {
+      this.afs.collection('posts').doc(id).update(featuredData).then(()=>{
+        this.toaster.info('Feaured Status Updated');
+      })
+  }
 }
