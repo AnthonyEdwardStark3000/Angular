@@ -45,16 +45,16 @@ export class PostsService {
   }
 
   // To load all the loaded data
-  loadData()
-  {
-    return this.afs.collection('posts').snapshotChanges().pipe(map(actions =>{
-      return actions.map(a =>{
-        const data = a.payload.doc.data();
-        const id = a.payload.doc.id;
-        return {id, data}
-      })
-    }))
-  }
+    loadData()
+    {
+      return this.afs.collection('posts').snapshotChanges().pipe(map(actions =>{
+        return actions.map(a =>{
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return {id, data}
+        })
+      }))
+    }
 // To Load only one edited data
   loadOneData(id: any)
   {

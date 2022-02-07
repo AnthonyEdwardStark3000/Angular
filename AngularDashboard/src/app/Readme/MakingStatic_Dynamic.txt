@@ -1,3 +1,17 @@
 Connect the app to the Firebase
+angular blog (i.e view)
   import AngularFireStoreModule, AngularFireModule in the View Project
   create services files for interacting with DB
+  Loading only Featured Post using whereclause of firebase
+  @post.service.ts
+//with where clause
+ loadData()
+  {
+    return this.afs.collection('posts', ref => ref.where('isFeatured',"==",true)).snapshotChanges().pipe(map(actions =>{
+      return actions.map(a =>{
+        const data = a.payload.doc.data();
+        const id = a.payload.doc.id;
+        return {id, data}
+      })
+    }))
+  }

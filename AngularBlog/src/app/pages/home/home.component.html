@@ -6,18 +6,11 @@
           <p class="text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel, laudantium delectus ut a unde explicabo! Consectetur illum ad eos! Commodi a inventore porro corporis error eum autem nesciunt? Ducimus, nulla.</p>
       </div>
     </div>
+
     <div class="row">
-      <div class="col-lg-3">
-        <app-post-card></app-post-card>
-      </div>
-      <div class="col-lg-3">
-        <app-post-card></app-post-card>
-      </div>
-      <div class="col-lg-3">
-        <app-post-card></app-post-card>
-      </div>
-      <div class="col-lg-3">
-        <app-post-card></app-post-card>
+      <div class="col-lg-3" *ngFor = "let featuredPost of FeaturedPostsArray">
+        <app-post-card [postData] = "featuredPost" ></app-post-card>
+        {{featuredPost}}
       </div>
     </div>
   </div>
