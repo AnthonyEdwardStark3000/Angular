@@ -6,6 +6,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AllPostComponent } from './posts/all-post/all-post.component';
 import { NewPostComponent } from './posts/new-post/new-post.component';
 import { AuthGuard } from './services/auth.guard';
+import { SubscribersComponent } from './subscribers/subscribers.component';
+
 
 const routes: Routes = [
   {
@@ -22,6 +24,9 @@ const routes: Routes = [
   },
   {
     path:'post/new', component: NewPostComponent ,canActivate: [AuthGuard]
+  },
+  {
+    path:'subscribers', component: SubscribersComponent ,canActivate: [AuthGuard]
   },
 
 ];
