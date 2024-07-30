@@ -23,7 +23,7 @@ namespace StreamingBackend.Controllers
         [HttpGet("stream")]
         public async Task<IActionResult> StreamData(CancellationToken cancellationToken)
         {
-            var apiUrl = "https://jsonplaceholder.typicode.com/photos"; // Replace with your external API URL
+            var apiUrl = "https://jsonplaceholder.typicode.com/photos";
 
             Response.ContentType = "text/event-stream";
             Response.Headers.Add("Cache-Control", "no-cache");
