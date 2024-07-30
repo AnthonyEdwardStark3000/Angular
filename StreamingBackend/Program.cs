@@ -5,6 +5,7 @@ builder.Services.AddControllers(); // Adding controllers with services for DI in
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpClient();
 var app = builder.Build();
 
 // app.UseStaticFiles();
