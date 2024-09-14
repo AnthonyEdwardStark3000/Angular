@@ -1,0 +1,79 @@
+{
+  "hash": "ec408a32",
+  "configHash": "8414f288",
+  "lockfileHash": "addf891a",
+  "browserHash": "a567a49a",
+  "optimized": {
+    "@angular/common/http": {
+      "src": "../../../../../node_modules/@angular/common/fesm2022/http.mjs",
+      "file": "@angular_common_http.js",
+      "fileHash": "d85547aa",
+      "needsInterop": false
+    },
+    "@angular/core": {
+      "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
+      "file": "@angular_core.js",
+      "fileHash": "55b57b97",
+      "needsInterop": false
+    },
+    "@angular/platform-browser": {
+      "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+      "file": "@angular_platform-browser.js",
+      "fileHash": "6bf3fb96",
+      "needsInterop": false
+    },
+    "@angular/router": {
+      "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
+      "file": "@angular_router.js",
+      "fileHash": "6bee1cf1",
+      "needsInterop": false
+    },
+    "ag-grid-angular": {
+      "src": "../../../../../node_modules/ag-grid-angular/fesm2022/ag-grid-angular.mjs",
+      "file": "ag-grid-angular.js",
+      "fileHash": "f80d717a",
+      "needsInterop": false
+    },
+    "jspdf": {
+      "src": "../../../../../node_modules/jspdf/dist/jspdf.es.min.js",
+      "file": "jspdf.js",
+      "fileHash": "0b0bd7c8",
+      "needsInterop": false
+    },
+    "jspdf-autotable": {
+      "src": "../../../../../node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js",
+      "file": "jspdf-autotable.js",
+      "fileHash": "fe3638d1",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "purify.es-DV6JDDC7": {
+      "file": "purify__es-DV6JDDC7.js"
+    },
+    "index.es-H7ZQXD2P": {
+      "file": "index__es-H7ZQXD2P.js"
+    },
+    "chunk-ENHIVCRP": {
+      "file": "chunk-ENHIVCRP.js"
+    },
+    "chunk-R2ICOSVY": {
+      "file": "chunk-R2ICOSVY.js"
+    },
+    "chunk-R27LBSID": {
+      "file": "chunk-R27LBSID.js"
+    },
+    "chunk-DFDHNT4V": {
+      "file": "chunk-DFDHNT4V.js"
+    },
+    "chunk-OQHSNTLB": {
+      "file": "chunk-OQHSNTLB.js"
+    },
+    "html2canvas.esm-7KIDMBZ6": {
+      "file": "html2canvas__esm-7KIDMBZ6.js"
+    },
+    "chunk-S35DAJRX": {
+      "file": "chunk-S35DAJRX.js"
+    }
+  }
+}
