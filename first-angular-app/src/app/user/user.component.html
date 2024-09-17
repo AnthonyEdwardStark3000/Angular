@@ -1,14 +1,16 @@
 <div class="card" (click)="onSelectUser()">
     <button type="button" class="btn btn-outline-primary" style="--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;display: flex;flex-direction: row;">
         <!-- src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" -->
+        <!-- [alt]="selectedUser().name" -->
         <img
         class="profile_image" 
-        [src]="ImagePath()"
-        [alt]="selectedUser().name"
+        [src]="ImagePath"
+        [alt]="name"
         sizes="(max-width: 600px) 100vw, 50vw"
         style="height: 40px;margin-top: auto;margin-bottom: auto;">
         <div class="card-body">
-            <span>{{selectedUser().name}}</span>
+            <!-- <span>{{selectedUser().name}}</span> -->
+            <span>{{name}}</span>
         </div>
     </button>
 </div>
